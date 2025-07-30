@@ -2054,5 +2054,56 @@
         </script>
       </div>
     </section>
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // ✅ VANTA.NET initialization
+    if (document.getElementById("hero-vanta-bg")) {
+      VANTA.NET({
+        el: "#hero-vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x3b82f6,
+        backgroundColor: 0x0f172a
+      });
+    }
+
+    // ✅ AOS scroll animations
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // ✅ Skill counters animation (if expected to animate)
+    const counters = document.querySelectorAll(".skill-counter");
+    counters.forEach(counter => {
+      const target = +counter.getAttribute("data-target");
+      let count = 0;
+      const step = target / 50;
+      const update = () => {
+        count += step;
+        if (count >= target) {
+          counter.innerText = target;
+        } else {
+          counter.innerText = Math.ceil(count);
+          requestAnimationFrame(update);
+        }
+      };
+      update();
+    });
+
+    // ✅ Add .animate classes for About section
+    document.querySelectorAll(".about-card").forEach(card => {
+      card.classList.add("animate");
+    });
+    document.querySelectorAll(".about-stats").forEach(stat => {
+      stat.classList.add("animate");
+    });
+  });
+</script>
   </body>
 </html>
